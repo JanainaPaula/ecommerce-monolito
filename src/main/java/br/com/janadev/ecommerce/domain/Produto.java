@@ -1,5 +1,7 @@
 package br.com.janadev.ecommerce.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class Produto implements Serializable {
     @JoinTable(name = "PRODUTO_CATEGORIA",
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+    @JsonIgnore
     private List<Categoria> categorias = new ArrayList<>();
 
     public Produto() {
