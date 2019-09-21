@@ -12,7 +12,7 @@ public class Cidade implements Serializable {
     private Integer id;
     private String nome;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "estado_id")
     private Estado estado;
 
