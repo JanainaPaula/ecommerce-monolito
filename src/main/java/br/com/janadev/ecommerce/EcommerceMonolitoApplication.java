@@ -1,18 +1,14 @@
 package br.com.janadev.ecommerce;
 
-import br.com.janadev.ecommerce.domain.Categoria;
-import br.com.janadev.ecommerce.domain.Cidade;
-import br.com.janadev.ecommerce.domain.Estado;
-import br.com.janadev.ecommerce.domain.Produto;
-import br.com.janadev.ecommerce.repositories.CategoriaRepository;
-import br.com.janadev.ecommerce.repositories.CidadeRepository;
-import br.com.janadev.ecommerce.repositories.EstadoRepository;
-import br.com.janadev.ecommerce.repositories.ProdutoRepository;
+import br.com.janadev.ecommerce.domain.*;
+import br.com.janadev.ecommerce.enums.TipoCliente;
+import br.com.janadev.ecommerce.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.persistence.JoinColumn;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -29,6 +25,12 @@ public class EcommerceMonolitoApplication implements CommandLineRunner {
 
     @Autowired
     private CidadeRepository cidadeRepository;
+
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    @Autowired
+    private EnderecoRepository enderecoRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(EcommerceMonolitoApplication.class, args);
@@ -66,5 +68,16 @@ public class EcommerceMonolitoApplication implements CommandLineRunner {
 
         estadoRepository.saveAll(Arrays.asList(est1, est2));
         cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+
+        Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "32259952070", TipoCliente.PESSOAFISICA);
+        cli1.getTelefones().addAll(Arrays.asList("956432356", "946432343"));
+
+        Endereco e1 = new Endereco(null, "Rua Flores", "300", "apto 203", "Jardim", "43285666", cli1, c1);
+        Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "49276890", cli1, c2);
+
+        cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+
+        clienteRepository.save(cli1);
+        enderecoRepository.saveAll(Arrays.asList(e1, e2));
     }
 }
