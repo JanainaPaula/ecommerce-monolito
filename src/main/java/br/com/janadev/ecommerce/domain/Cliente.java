@@ -1,6 +1,7 @@
 package br.com.janadev.ecommerce.domain;
 
 import br.com.janadev.ecommerce.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,6 +25,7 @@ public class Cliente implements Serializable {
     @CollectionTable(name = "TELEFONES")
     private Set<String> telefones = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 

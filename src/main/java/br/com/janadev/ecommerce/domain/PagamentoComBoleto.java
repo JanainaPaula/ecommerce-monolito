@@ -1,6 +1,7 @@
 package br.com.janadev.ecommerce.domain;
 
 import br.com.janadev.ecommerce.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Entity;
 import java.util.Date;
@@ -8,7 +9,10 @@ import java.util.Date;
 @Entity
 public class PagamentoComBoleto extends Pagamento {
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataVencimento;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataPagamento;
 
     public PagamentoComBoleto(){}

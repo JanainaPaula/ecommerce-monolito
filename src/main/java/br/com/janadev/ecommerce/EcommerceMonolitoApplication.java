@@ -34,7 +34,7 @@ public class EcommerceMonolitoApplication implements CommandLineRunner {
     private EnderecoRepository enderecoRepository;
 
     @Autowired
-    private PedidoRepositoy pedidoRepository;
+    private PedidoRepository pedidoRepository;
 
     @Autowired
     private PagamentoRepository pagamentoRepository;
