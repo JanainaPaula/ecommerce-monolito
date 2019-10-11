@@ -23,4 +23,10 @@ public class CategoriaService {
     public Categoria insereCategoria(Categoria categoria) {
         return repository.save(categoria);
     }
+
+
+    public Categoria atualizaCategoria(Categoria categoria) {
+        buscaCategoriaPorId(categoria.getId());
+        return repository.save(categoria);
+    }
 }
