@@ -1,6 +1,7 @@
 package br.com.janadev.ecommerce.resource;
 
 import br.com.janadev.ecommerce.domain.Categoria;
+import br.com.janadev.ecommerce.dto.CategoriaDTO;
 import br.com.janadev.ecommerce.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/categorias")
@@ -41,6 +43,12 @@ public class CategoriaResource {
     public ResponseEntity<Void> deletaCategoria(@PathVariable Integer id){
         service.deletaCategoria(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoriaDTO>> listaCategoria(){
+        List<CategoriaDTO> categorias = service.buscaTodasCategorias();
+        return ResponseEntity.ok(categorias);
     }
 
 }

@@ -1,6 +1,7 @@
 package br.com.janadev.ecommerce.services;
 
 import br.com.janadev.ecommerce.domain.Categoria;
+import br.com.janadev.ecommerce.dto.CategoriaDTO;
 import br.com.janadev.ecommerce.exception.DataIntegrityException;
 import br.com.janadev.ecommerce.exception.ObjectNotFoundException;
 import br.com.janadev.ecommerce.repositories.CategoriaRepository;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoriaService {
@@ -40,5 +43,9 @@ public class CategoriaService {
             throw new DataIntegrityException("Não é possível deletar uma categoria que contém produtos.");
         }
 
+    }
+
+    public List<CategoriaDTO> buscaTodasCategorias() {
+        return repository.findAll().stream().map(CategoriaDTO::new).collect(Collectors.toList());
     }
 }
