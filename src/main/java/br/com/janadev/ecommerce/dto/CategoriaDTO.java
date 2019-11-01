@@ -1,17 +1,26 @@
 package br.com.janadev.ecommerce.dto;
 
 import br.com.janadev.ecommerce.domain.Categoria;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class CategoriaDTO implements Serializable {
 
     private Integer id;
+
+    @NotEmpty(message = "O preenchimento do nome é obrigatório.")
+    @Length(min = 5, max = 80, message = "O tamanho minímo é 5 e o máximo é 80.")
     private String nome;
 
     public CategoriaDTO(Categoria categoria){
         id = categoria.getId();
         nome = categoria.getNome();
+    }
+
+    public Categoria fromDTO(){
+        return new Categoria(this.id, this.nome);
     }
 
     public CategoriaDTO() {
