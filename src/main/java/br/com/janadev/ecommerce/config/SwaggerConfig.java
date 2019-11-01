@@ -16,12 +16,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    private final BuildProperties buildProperties;
+//    private final BuildProperties buildProperties;
 
-    @Autowired
-    public SwaggerConfig(BuildProperties buildProperties) {
-        this.buildProperties = buildProperties;
-    }
+//    @Autowired
+//    public SwaggerConfig(BuildProperties buildProperties) {
+//        this.buildProperties = buildProperties;
+//    }
 
     @Bean
     public Docket api(){
@@ -35,17 +35,17 @@ public class SwaggerConfig {
     private ApiInfo getMavenProjectInfo() {
 
         return new ApiInfoBuilder()
-                .title(buildProperties.getName())
-                .description(getDescription())
-                .version(buildProperties.getVersion())
+                .title("Ecommerce Monolito")
+                .description("Projeto de exemplo para estudar Spring Boot")
+                .version("0.1.0")
                 .build();
     }
 
-    private String getDescription() {
-        String description = buildProperties.get("${project.description}");
-        if (StringUtils.isEmpty(description)){
-            description = "Projeto de Ecommerce para estudo de Java com Spring Boot.";
-        }
-        return description;
-    }
+//    private String getDescription() {
+//        String description = buildProperties.get("${project.description}");
+//        if (StringUtils.isEmpty(description)){
+//            description = "Projeto de Ecommerce para estudo de Java com Spring Boot.";
+//        }
+//        return description;
+//    }
 }
