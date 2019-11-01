@@ -7,6 +7,9 @@ import br.com.janadev.ecommerce.exception.ObjectNotFoundException;
 import br.com.janadev.ecommerce.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,5 +50,10 @@ public class CategoriaService {
 
     public List<CategoriaDTO> buscaTodasCategorias() {
         return repository.findAll().stream().map(CategoriaDTO::new).collect(Collectors.toList());
+    }
+
+    public Page<Categoria> buscaPaginaCategorias(Integer page, Integer size, String direction, String orderBy){
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.valueOf(direction), orderBy);
+        return repository.findAll(pageRequest);
     }
 }

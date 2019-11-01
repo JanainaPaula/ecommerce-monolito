@@ -4,6 +4,7 @@ import br.com.janadev.ecommerce.domain.Categoria;
 import br.com.janadev.ecommerce.dto.CategoriaDTO;
 import br.com.janadev.ecommerce.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -49,6 +50,17 @@ public class CategoriaResource {
     public ResponseEntity<List<CategoriaDTO>> listaCategoria(){
         List<CategoriaDTO> categorias = service.buscaTodasCategorias();
         return ResponseEntity.ok(categorias);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<CategoriaDTO>> buscaPaginaCategoria(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "24") Integer size,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction,
+            @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy){
+        Page<Categoria> paginaCategoria = service.buscaPaginaCategorias(page, size, direction, orderBy);
+        Page<CategoriaDTO> paginaCategoriasDTO = paginaCategoria.map(CategoriaDTO::new);
+        return ResponseEntity.ok(paginaCategoriasDTO);
     }
 
 }
