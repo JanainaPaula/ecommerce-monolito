@@ -1,6 +1,8 @@
 package br.com.janadev.ecommerce.services;
 
 import br.com.janadev.ecommerce.domain.Categoria;
+import br.com.janadev.ecommerce.domain.Categoria;
+import br.com.janadev.ecommerce.domain.Cliente;
 import br.com.janadev.ecommerce.dto.CategoriaDTO;
 import br.com.janadev.ecommerce.exception.DataIntegrityException;
 import br.com.janadev.ecommerce.exception.ObjectNotFoundException;
@@ -34,8 +36,9 @@ public class CategoriaService {
 
 
     public Categoria atualizaCategoria(Categoria categoria) {
-        buscaCategoriaPorId(categoria.getId());
-        return repository.save(categoria);
+        Categoria clienteBuscado = buscaCategoriaPorId(categoria.getId());
+        updateData(clienteBuscado, categoria);
+        return repository.save(clienteBuscado);
     }
 
     public void deletaCategoria(Integer id) {
@@ -46,6 +49,10 @@ public class CategoriaService {
             throw new DataIntegrityException("Não é possível deletar uma categoria que contém produtos.");
         }
 
+    }
+
+    private void updateData(Categoria categoriaBuscada, Categoria categoriaAtualizada) {
+        categoriaBuscada.setNome(categoriaAtualizada.getNome());
     }
 
     public List<CategoriaDTO> buscaTodasCategorias() {
