@@ -2,6 +2,7 @@ package br.com.janadev.ecommerce.resource;
 
 import br.com.janadev.ecommerce.domain.Cliente;
 import br.com.janadev.ecommerce.dto.ClienteDTO;
+import br.com.janadev.ecommerce.dto.ClienteNewDTO;
 import br.com.janadev.ecommerce.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +28,7 @@ public class ClienteResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insereCliente(@Valid @RequestBody ClienteDTO clienteDto){
+    public ResponseEntity<Void> insereCliente(@Valid @RequestBody ClienteNewDTO clienteDto){
         Cliente categoriaCriada = service.insereCliente(clienteDto.fromDTO());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(categoriaCriada.getId()).toUri();

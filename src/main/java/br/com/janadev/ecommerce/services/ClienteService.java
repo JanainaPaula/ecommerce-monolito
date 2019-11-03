@@ -5,12 +5,14 @@ import br.com.janadev.ecommerce.dto.ClienteDTO;
 import br.com.janadev.ecommerce.exception.DataIntegrityException;
 import br.com.janadev.ecommerce.exception.ObjectNotFoundException;
 import br.com.janadev.ecommerce.repositories.ClienteRepository;
+import br.com.janadev.ecommerce.repositories.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,16 +24,20 @@ public class ClienteService {
     @Autowired
     private ClienteRepository repository;
 
+    @Autowired
+    private EnderecoRepository enderecoRepository;
+
     public Cliente buscaClientePorId(Integer id){
         Optional<Cliente> clienteBuscado = repository.findById(id);
         return clienteBuscado.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado. Id: " +
                 id + ", Tipo: " + Cliente.class.getName()));
     }
 
+    @Transactional
     public Cliente insereCliente(Cliente cliente) {
+        enderecoRepository.saveAll(cliente.getEnderecos());
         return repository.save(cliente);
     }
-
 
     public Cliente atualizaCliente(Cliente cliente) {
         Cliente clienteBuscado = buscaClientePorId(cliente.getId());
