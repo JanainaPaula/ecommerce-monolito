@@ -1,11 +1,21 @@
 package br.com.janadev.ecommerce.dto;
 
 import br.com.janadev.ecommerce.domain.Cliente;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 public class ClienteDTO {
 
     private Integer id;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 5, max = 120, message = "O tamanho deveser entre 5 e 120 caracteres.")
     private String nome;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Email(message = "Email inválido")
     private String email;
 
     public ClienteDTO() {
