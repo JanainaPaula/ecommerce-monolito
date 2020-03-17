@@ -1,11 +1,13 @@
 package br.com.janadev.ecommerce.dto;
 
 import br.com.janadev.ecommerce.domain.Cliente;
+import br.com.janadev.ecommerce.services.validation.ClienteUpdate;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+@ClienteUpdate
 public class ClienteDTO {
 
     private Integer id;
