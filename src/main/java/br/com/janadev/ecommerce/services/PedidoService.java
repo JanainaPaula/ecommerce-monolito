@@ -11,6 +11,7 @@ import br.com.janadev.ecommerce.repositories.PedidoRepository;
 import br.com.janadev.ecommerce.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Optional;
@@ -39,6 +40,7 @@ public class PedidoService {
                 id + ", Tipo: " + Pedido.class.getName()));
     }
 
+    @Transactional
     public Pedido insert(Pedido pedido) {
         pedido.setId(null);
         pedido.setInstante(new Date());
