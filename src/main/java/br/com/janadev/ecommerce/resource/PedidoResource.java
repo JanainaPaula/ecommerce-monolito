@@ -1,8 +1,6 @@
 package br.com.janadev.ecommerce.resource;
 
-import br.com.janadev.ecommerce.domain.Categoria;
 import br.com.janadev.ecommerce.domain.Pedido;
-import br.com.janadev.ecommerce.dto.CategoriaDTO;
 import br.com.janadev.ecommerce.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
