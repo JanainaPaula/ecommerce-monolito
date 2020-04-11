@@ -1,6 +1,8 @@
 package br.com.janadev.ecommerce.config;
 
 import br.com.janadev.ecommerce.services.DBService;
+import br.com.janadev.ecommerce.services.EmailService;
+import br.com.janadev.ecommerce.services.MockEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,5 +25,10 @@ public class TestConfig {
     public boolean initialiazeDatabase() throws ParseException {
         dbService.initializeDatabase();
         return true;
+    }
+
+    @Bean
+    public EmailService emailService(){
+        return new MockEmailService();
     }
 }
