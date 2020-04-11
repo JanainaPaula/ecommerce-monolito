@@ -1,6 +1,8 @@
 package br.com.janadev.ecommerce.config;
 
 import br.com.janadev.ecommerce.services.DBService;
+import br.com.janadev.ecommerce.services.EmailService;
+import br.com.janadev.ecommerce.services.SmtpEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,5 +32,10 @@ public class DevConfig {
             return true;
         }
         return false;
+    }
+
+    @Bean
+    public EmailService emailService(){
+        return new SmtpEmailService();
     }
 }

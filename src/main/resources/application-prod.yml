@@ -10,3 +10,20 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: none
+
+  mail:
+    host: smtp.gmail.com
+    username: teste.trabalho093@gmail.com
+    password: 
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+          starttls:
+            enable: true
+          ssl:
+            enable: true
