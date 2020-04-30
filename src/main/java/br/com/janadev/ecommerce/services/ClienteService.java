@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +28,9 @@ public class ClienteService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     public Cliente buscaClientePorId(Integer id){
         Optional<Cliente> clienteBuscado = repository.findById(id);
         return clienteBuscado.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado. Id: " +
@@ -35,8 +39,14 @@ public class ClienteService {
 
     @Transactional
     public Cliente insereCliente(Cliente cliente) {
+        String senhaEncriptada = encryptSenha(cliente.getSenha());
+        cliente.setSenha(senhaEncriptada);
         enderecoRepository.saveAll(cliente.getEnderecos());
         return repository.save(cliente);
+    }
+
+    private String encryptSenha(String senha) {
+        return passwordEncoder.encode(senha);
     }
 
     public Cliente atualizaCliente(Cliente cliente) {

@@ -30,7 +30,7 @@ public class ClienteDTO {
     }
 
     public Cliente fromDTO(){
-        return new Cliente(this.id, this.nome, this.email, null, null);
+        return new Cliente(this.id, this.nome, this.email, null, null, null);
     }
 
     public Integer getId() {

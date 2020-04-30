@@ -27,6 +27,9 @@ public class ClienteNewDTO {
     private Integer tipo;
 
     @NotEmpty(message = "Preenchimento obrigatório")
+    private String senha;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
     private String logradouro;
 
     @NotEmpty(message = "Preenchimento obrigatório")
@@ -78,6 +81,14 @@ public class ClienteNewDTO {
 
     public void setTipo(Integer tipo) {
         this.tipo = tipo;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getLogradouro() {
@@ -153,7 +164,7 @@ public class ClienteNewDTO {
     }
 
     public Cliente fromDTO() {
-        Cliente cliente = new Cliente(null, this.nome, this.email, this.cpfOuCnpj, TipoCliente.toEnum(this.tipo));
+        Cliente cliente = new Cliente(null, this.nome, this.email, this.cpfOuCnpj, TipoCliente.toEnum(this.tipo), this.senha);
         Cidade cidade = new Cidade(this.cidadeId, null, null);
         Endereco endereco = new Endereco(null, this.logradouro, this.numero, this.complemento, this.bairro, this.cep, cliente, cidade);
         cliente.getEnderecos().add(endereco);
@@ -167,4 +178,6 @@ public class ClienteNewDTO {
 
         return cliente;
     }
+
+
 }
