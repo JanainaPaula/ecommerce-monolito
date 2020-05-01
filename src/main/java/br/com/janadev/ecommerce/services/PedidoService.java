@@ -1,15 +1,18 @@
 package br.com.janadev.ecommerce.services;
 
-import br.com.janadev.ecommerce.domain.ItemPedido;
-import br.com.janadev.ecommerce.domain.PagamentoComBoleto;
-import br.com.janadev.ecommerce.domain.Pedido;
+import br.com.janadev.ecommerce.domain.*;
 import br.com.janadev.ecommerce.enums.EstadoPagamento;
+import br.com.janadev.ecommerce.exception.AuthorizationException;
 import br.com.janadev.ecommerce.exception.ObjectNotFoundException;
 import br.com.janadev.ecommerce.repositories.ItemPedidoRepository;
 import br.com.janadev.ecommerce.repositories.PagamentoRepository;
 import br.com.janadev.ecommerce.repositories.PedidoRepository;
 import br.com.janadev.ecommerce.repositories.ProdutoRepository;
+import br.com.janadev.ecommerce.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,5 +71,16 @@ public class PedidoService {
         itemPedidoRepository.saveAll(pedido.getItens());
         emailService.sendOrderConfirmationEmail(pedido);
         return pedido;
+    }
+
+    public Page<Pedido> buscaPaginaCategorias(Integer page, Integer size, String direction, String orderBy){
+        UserSS user = UserService.authenticated();
+        if (user == null){
+            throw new AuthorizationException("Acessso Negado");
+        }
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.valueOf(direction), orderBy);
+        Cliente cliente = clienteService.buscaClientePorId(user.getId());
+        return pedidoRepository.findByCliente(cliente, pageRequest);
+
     }
 }
