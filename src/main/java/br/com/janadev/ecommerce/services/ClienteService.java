@@ -2,10 +2,13 @@ package br.com.janadev.ecommerce.services;
 
 import br.com.janadev.ecommerce.domain.Cliente;
 import br.com.janadev.ecommerce.dto.ClienteDTO;
+import br.com.janadev.ecommerce.enums.Perfil;
+import br.com.janadev.ecommerce.exception.AuthorizationException;
 import br.com.janadev.ecommerce.exception.DataIntegrityException;
 import br.com.janadev.ecommerce.exception.ObjectNotFoundException;
 import br.com.janadev.ecommerce.repositories.ClienteRepository;
 import br.com.janadev.ecommerce.repositories.EnderecoRepository;
+import br.com.janadev.ecommerce.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -32,6 +35,12 @@ public class ClienteService {
     private BCryptPasswordEncoder passwordEncoder;
 
     public Cliente buscaClientePorId(Integer id){
+
+        UserSS user = UserService.authenticated();
+        if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())){
+            throw new AuthorizationException("Acesso Negado");
+        }
+
         Optional<Cliente> clienteBuscado = repository.findById(id);
         return clienteBuscado.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado. Id: " +
                 id + ", Tipo: " + Cliente.class.getName()));

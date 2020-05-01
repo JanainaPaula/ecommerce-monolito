@@ -1,5 +1,6 @@
 package br.com.janadev.ecommerce.handler;
 
+import br.com.janadev.ecommerce.exception.AuthorizationException;
 import br.com.janadev.ecommerce.exception.DataIntegrityException;
 import br.com.janadev.ecommerce.exception.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -33,5 +34,11 @@ public class ResourceExceptionHandler {
             error.addErrors(field.getField(), field.getDefaultMessage());
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(AuthorizationException.class)
+    public ResponseEntity<StandardError> authorization(AuthorizationException ex){
+        StandardError error = new StandardError(HttpStatus.FORBIDDEN.value(), ex.getMessage(), System.currentTimeMillis());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
     }
 }
