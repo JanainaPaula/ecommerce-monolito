@@ -6,6 +6,7 @@ import br.com.janadev.ecommerce.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -26,6 +27,7 @@ public class CategoriaResource {
         return ResponseEntity.ok(categoria);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Void> insereCategoria(@Valid @RequestBody CategoriaDTO categoria){
         Categoria categoriaCriada = service.insereCategoria(categoria.fromDTO());
@@ -34,6 +36,7 @@ public class CategoriaResource {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Void> atualizaCategoria(@Valid @RequestBody CategoriaDTO categoria, @PathVariable Integer id){
         categoria.setId(id);
@@ -41,6 +44,7 @@ public class CategoriaResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletaCategoria(@PathVariable Integer id){
         service.deletaCategoria(id);
