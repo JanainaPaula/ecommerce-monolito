@@ -5,3 +5,7 @@ spring:
 default:
   sender: janainadepaula93@gmail.com
   recipient: janainadepaula93@gmail.com
+
+jwt:
+  secret: SequenciaDeCaracteresParaAssinarToken
+  expiration: 60000
