@@ -11,8 +11,8 @@ jwt:
   expiration: 86400000
 
 aws:
-  access_key_id: AKIAXOKQNQA4FB6D5YXX
-  secret_access_key: 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
+  access_key_id:
+  secret_access_key: 
 s3:
   bucket: ecommerce-monolito
   region: sa-east-1
