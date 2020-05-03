@@ -2,6 +2,7 @@ package br.com.janadev.ecommerce.services;
 
 import br.com.janadev.ecommerce.exception.FileException;
 import org.apache.commons.io.FilenameUtils;
+import org.imgscalr.Scalr;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,5 +49,18 @@ public class ImageService {
         } catch (IOException e) {
             throw new FileException("Erro ao ler arquivo");
         }
+    }
+
+    public BufferedImage cropSquare(BufferedImage image){
+        int min = Math.min(image.getHeight(), image.getWidth());
+        return Scalr.crop(image,
+                (image.getWidth()/2) - (min/2),
+                (image.getHeight()/2) - (min/2),
+                min,
+                min);
+    }
+
+    public BufferedImage resize(BufferedImage image, int size){
+        return Scalr.resize(image, Scalr.Method.ULTRA_QUALITY, size);
     }
 }
