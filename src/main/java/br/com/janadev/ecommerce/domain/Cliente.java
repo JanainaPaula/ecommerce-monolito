@@ -25,6 +25,8 @@ public class Cliente implements Serializable {
     @JsonIgnore
     private String senha;
 
+    private String imageUrl;
+
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
 
@@ -100,6 +102,14 @@ public class Cliente implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public List<Endereco> getEnderecos() {
