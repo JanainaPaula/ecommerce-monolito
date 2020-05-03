@@ -1,5 +1,6 @@
 package br.com.janadev.ecommerce.services;
 
+import br.com.janadev.ecommerce.exception.FileException;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
@@ -36,7 +37,7 @@ public class S3Service {
             String contentType = multipartFile.getContentType();
             return this.uploadFile(inputStream, filename, contentType);
         } catch (IOException e) {
-            throw new RuntimeException("Erro de IO: " + e.getMessage());
+            throw new FileException("Erro de IO: " + e.getMessage());
         }
 
     }
@@ -50,7 +51,7 @@ public class S3Service {
             LOG.info("Upload concluído");
             return amazonS3.getUrl(bucketName, fileName).toURI();
         } catch (URISyntaxException e) {
-            throw new RuntimeException("Erro ao converter URL para URI.");
+            throw new FileException("Erro ao converter URL para URI.");
         }
     }
 }
