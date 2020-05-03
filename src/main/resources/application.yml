@@ -16,3 +16,10 @@ aws:
 s3:
   bucket: ecommerce-monolito
   region: sa-east-1
+
+img:
+  prefix:
+    client:
+      profile: cp
+  profile:
+    size: 200
