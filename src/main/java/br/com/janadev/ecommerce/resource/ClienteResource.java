@@ -51,6 +51,12 @@ public class ClienteResource {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/email")
+    public ResponseEntity<Cliente> buscaPorEmail(@RequestParam(name = "value") String email){
+        Cliente cliente = service.findByEmail(email);
+        return ResponseEntity.ok(cliente);
+    }
+
     @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> listaCliente(){

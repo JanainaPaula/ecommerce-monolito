@@ -104,6 +104,21 @@ public class ClienteService {
         return repository.findAll(pageRequest);
     }
 
+    public Cliente findByEmail(String email){
+        UserSS user = UserService.authenticated();
+        if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())){
+            throw new AuthorizationException("Acesso negado");
+        }
+
+        Cliente cliente = repository.findByEmail(email);
+        if (cliente == null){
+            throw new ObjectNotFoundException("Objeto não encontrado! ID: " + user.getId() +
+                    ", Tipo: " + Cliente.class.getName());
+        }
+
+        return cliente;
+    }
+
     public URI uploadProfilePicture(MultipartFile multipartFile){
         UserSS user = UserService.authenticated();
         if (user == null){
