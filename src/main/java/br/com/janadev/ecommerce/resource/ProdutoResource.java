@@ -8,6 +8,7 @@ import br.com.janadev.ecommerce.dto.ProdutoDTO;
 import br.com.janadev.ecommerce.resource.util.URLUtil;
 import br.com.janadev.ecommerce.services.PedidoService;
 import br.com.janadev.ecommerce.services.ProdutoService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +21,16 @@ public class ProdutoResource {
     @Autowired
     private ProdutoService service;
 
+    @ApiOperation(value = "Busca Produto por ID")
     @GetMapping("/{id}")
     public ResponseEntity<Produto> buscaProdutoPorId(@PathVariable Integer id){
         Produto produto = service.buscaProdutoPorId(id);
         return ResponseEntity.ok(produto);
     }
 
+    @ApiOperation(value = "Busca todos os Produtos com paginação")
     @GetMapping
-    public ResponseEntity<Page<ProdutoDTO>> buscaPaginaCategoria(
+    public ResponseEntity<Page<ProdutoDTO>> buscaPaginaProduto(
             @RequestParam(value = "nome", defaultValue = "") String nome,
             @RequestParam(value = "categorias", defaultValue = "") String categorias,
             @RequestParam(value = "page", defaultValue = "0") Integer page,

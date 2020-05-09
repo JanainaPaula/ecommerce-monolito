@@ -4,6 +4,7 @@ import br.com.janadev.ecommerce.domain.Cliente;
 import br.com.janadev.ecommerce.dto.ClienteDTO;
 import br.com.janadev.ecommerce.dto.ClienteNewDTO;
 import br.com.janadev.ecommerce.services.ClienteService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +24,14 @@ public class ClienteResource {
     @Autowired
     private ClienteService service;
 
+    @ApiOperation(value = "Busca Cliente por ID")
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscarClientePorId(@PathVariable Integer id){
         Cliente cliente = service.buscaClientePorId(id);
         return ResponseEntity.ok(cliente);
     }
 
+    @ApiOperation(value = "Cadastra novo Cliente")
     @PostMapping
     public ResponseEntity<Void> insereCliente(@Valid @RequestBody ClienteNewDTO clienteDto){
         Cliente categoriaCriada = service.insereCliente(clienteDto.fromDTO());
@@ -37,6 +40,7 @@ public class ClienteResource {
         return ResponseEntity.created(uri).build();
     }
 
+    @ApiOperation(value = "Atualiza Cliente existente")
     @PutMapping("/{id}")
     public ResponseEntity<Void> atualizaCliente(@Valid @RequestBody ClienteDTO clienteDto, @PathVariable Integer id){
         clienteDto.setId(id);
@@ -44,6 +48,7 @@ public class ClienteResource {
         return ResponseEntity.noContent().build();
     }
 
+    @ApiOperation(value = "Remove Cliente")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletaCliente(@PathVariable Integer id){
@@ -51,12 +56,14 @@ public class ClienteResource {
         return ResponseEntity.noContent().build();
     }
 
+    @ApiOperation(value = "Busca Cliente por email")
     @GetMapping("/email")
     public ResponseEntity<Cliente> buscaPorEmail(@RequestParam(name = "value") String email){
         Cliente cliente = service.findByEmail(email);
         return ResponseEntity.ok(cliente);
     }
 
+    @ApiOperation(value = "Busca todos os clientes")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> listaCliente(){
@@ -64,6 +71,7 @@ public class ClienteResource {
         return ResponseEntity.ok(categorias);
     }
 
+    @ApiOperation(value = "Busca todos os Clientes com paginação")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping("/page")
     public ResponseEntity<Page<ClienteDTO>> buscaPaginaCliente(
@@ -76,6 +84,7 @@ public class ClienteResource {
         return ResponseEntity.ok(paginaClientesDTO);
     }
 
+    @ApiOperation(value = "Faz upload da foto de perfil do Cliente")
     @PostMapping("/picture")
     public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name = "file") MultipartFile multipartFile){
         URI uri = service.uploadProfilePicture(multipartFile);
