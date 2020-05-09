@@ -1,5 +1,6 @@
 package br.com.janadev.ecommerce.config;
 
+import io.swagger.models.auth.In;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -7,18 +8,15 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
 import springfox.documentation.schema.ModelRef;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.service.Header;
-import springfox.documentation.service.ResponseMessage;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
+import springfox.documentation.spi.service.contexts.SecurityContextBuilder;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.net.http.HttpHeaders;
+import java.util.*;
 
 @Configuration
 @EnableSwagger2
@@ -44,7 +42,29 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("br.com.janadev.ecommerce.resource"))
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(apiInfo());
+                .apiInfo(apiInfo())
+                .securitySchemes(Collections.singletonList(new ApiKey("Token Access", "Authorization", In.HEADER.toValue())))
+                .securityContexts(Collections.singletonList(securityContexts()));
+    }
+
+    /** Define em quais recursos vão ser colocados o header Authorization*/
+    private SecurityContext securityContexts() {
+        return SecurityContext.builder()
+                .securityReferences(getSecurityReferences())
+                .forPaths(PathSelectors.any())
+                .build();
+    }
+
+    /** Define as ROLES de autenticação */
+    private List<SecurityReference> getSecurityReferences() {
+        AuthorizationScope authorizationScopeAdmin = new AuthorizationScope("ADMIN",
+                "Possui acesso a todos os recursos");
+        AuthorizationScope authorizationScopeCliente = new AuthorizationScope("CLIENTE",
+                "Possui acesso apenas a recusos de leitura de seus próprios dados");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[2];
+        authorizationScopes[0] = authorizationScopeAdmin;
+        authorizationScopes[1] = authorizationScopeCliente;
+        return Collections.singletonList(new SecurityReference("Token Access", authorizationScopes));
     }
 
     private ApiInfo apiInfo() {
