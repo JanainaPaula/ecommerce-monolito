@@ -30,7 +30,7 @@ public class ProdutoResource {
 
     @ApiOperation(value = "Busca todos os Produtos com paginação")
     @GetMapping
-    public ResponseEntity<Page<ProdutoDTO>> buscaPaginaCategoria(
+    public ResponseEntity<Page<ProdutoDTO>> buscaPaginaProduto(
             @RequestParam(value = "nome", defaultValue = "") String nome,
             @RequestParam(value = "categorias", defaultValue = "") String categorias,
             @RequestParam(value = "page", defaultValue = "0") Integer page,

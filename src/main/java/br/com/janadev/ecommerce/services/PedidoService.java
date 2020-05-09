@@ -73,7 +73,7 @@ public class PedidoService {
         return pedido;
     }
 
-    public Page<Pedido> buscaPaginaCategorias(Integer page, Integer size, String direction, String orderBy){
+    public Page<Pedido> buscaPaginaPedidos(Integer page, Integer size, String direction, String orderBy){
         UserSS user = UserService.authenticated();
         if (user == null){
             throw new AuthorizationException("Acessso Negado");
