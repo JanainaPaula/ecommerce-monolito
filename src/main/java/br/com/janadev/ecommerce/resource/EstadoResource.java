@@ -6,6 +6,7 @@ import br.com.janadev.ecommerce.dto.CidadeDTO;
 import br.com.janadev.ecommerce.dto.EstadoDTO;
 import br.com.janadev.ecommerce.services.CidadeService;
 import br.com.janadev.ecommerce.services.EstadoService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class EstadoResource {
     @Autowired
     private CidadeService cidadeService;
 
+    @ApiOperation(value = "Busca todos os Estados do Brasil")
     @GetMapping
     public ResponseEntity<List<EstadoDTO>> findAll(){
         List<Estado> estados = estadoService.findAll();
@@ -33,6 +35,7 @@ public class EstadoResource {
         return ResponseEntity.ok().body(estadosDTO);
     }
 
+    @ApiOperation(value = "Busca todos as cidades de um Estado")
     @GetMapping("/{estado-id}/cidades")
     public ResponseEntity<List<CidadeDTO>> findCidades(@PathVariable(name = "estado-id") Integer estadoId){
         List<Cidade> cidades = cidadeService.findCidades(estadoId);

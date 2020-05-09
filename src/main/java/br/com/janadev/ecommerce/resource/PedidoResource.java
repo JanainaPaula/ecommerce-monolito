@@ -4,6 +4,7 @@ import br.com.janadev.ecommerce.domain.Categoria;
 import br.com.janadev.ecommerce.domain.Pedido;
 import br.com.janadev.ecommerce.dto.CategoriaDTO;
 import br.com.janadev.ecommerce.services.PedidoService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +21,14 @@ public class PedidoResource {
     @Autowired
     private PedidoService service;
 
+    @ApiOperation(value = "Busca Pedido por ID")
     @GetMapping("/{id}")
     public ResponseEntity<Pedido> buscaPedidoPorId(@PathVariable Integer id){
         Pedido pedido = service.buscaPedidoPorId(id);
         return ResponseEntity.ok(pedido);
     }
 
+    @ApiOperation(value = "Cria novo pedido")
     @PostMapping
     public ResponseEntity<Void> inserePedido(@Valid @RequestBody Pedido pedido){
         Pedido pedidoSalvo = service.insert(pedido);
@@ -34,6 +37,7 @@ public class PedidoResource {
         return ResponseEntity.created(uri).build();
     }
 
+    @ApiOperation(value = "Busca todos os Pedidos com paginação")
     @GetMapping
     public ResponseEntity<Page<Pedido>> buscaPaginaCategoria(
             @RequestParam(value = "page", defaultValue = "0") Integer page,

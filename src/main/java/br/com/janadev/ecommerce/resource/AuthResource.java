@@ -5,6 +5,7 @@ import br.com.janadev.ecommerce.security.JWTUtil;
 import br.com.janadev.ecommerce.security.UserSS;
 import br.com.janadev.ecommerce.services.AuthService;
 import br.com.janadev.ecommerce.services.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,7 @@ public class AuthResource {
     @Autowired
     private AuthService authService;
 
+    @ApiOperation(value = "Renova JWT Token")
     @PostMapping("/refresh-token")
     public ResponseEntity<Void> refreshToken(HttpServletResponse response) {
         UserSS user = UserService.authenticated();
@@ -34,6 +36,7 @@ public class AuthResource {
         return ResponseEntity.noContent().build();
     }
 
+    @ApiOperation(value = "Cria nova senha para usuário")
     @PostMapping("/forgot")
     public ResponseEntity<Void> forgot(@Valid @RequestBody EmailDTO emailDTO){
         authService.sendNewPassword(emailDTO.getEmail());
