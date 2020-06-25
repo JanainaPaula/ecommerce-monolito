@@ -1,6 +1,6 @@
 # Ecommerce Monolito
 
-Aplicação que simula um back-end de um ecommerce. Desenvolvido para estudo do framework Spring Boot.
+Aplicação que simula um back-end de um ecommerce. Projeto inicialmente desenvolvido para colocar em prática o aprendizado do Framework Spring Boot. Atualmente é usado como uma base de código onde coloco em prática diversos assuntos que estudo sobre desenvolvimento de software.
 
 ## Tecnologias
 
