@@ -1,4 +1,4 @@
-package br.com.janadev.ecommerce.domain.cliente;
+package br.com.janadev.ecommerce.domain.cliente.endereco;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

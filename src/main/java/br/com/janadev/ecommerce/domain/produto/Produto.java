@@ -2,6 +2,7 @@ package br.com.janadev.ecommerce.domain.produto;
 
 import br.com.janadev.ecommerce.domain.pedido.ItemPedido;
 import br.com.janadev.ecommerce.domain.pedido.Pedido;
+import br.com.janadev.ecommerce.domain.produto.categoria.Categoria;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;

@@ -1,5 +1,7 @@
 package br.com.janadev.ecommerce.domain.cliente;
 
+import br.com.janadev.ecommerce.domain.cliente.endereco.Cidade;
+import br.com.janadev.ecommerce.domain.cliente.endereco.Endereco;
 import br.com.janadev.ecommerce.domain.cliente.validation.ClienteInsert;
 import org.hibernate.validator.constraints.Length;
 

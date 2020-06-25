@@ -1,5 +1,7 @@
 package br.com.janadev.ecommerce.domain.produto;
 
+import br.com.janadev.ecommerce.domain.produto.categoria.Categoria;
+import br.com.janadev.ecommerce.domain.produto.categoria.CategoriaRepository;
 import br.com.janadev.ecommerce.infra.error.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

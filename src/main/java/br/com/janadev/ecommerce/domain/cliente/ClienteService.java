@@ -1,5 +1,6 @@
 package br.com.janadev.ecommerce.domain.cliente;
 
+import br.com.janadev.ecommerce.domain.cliente.endereco.EnderecoRepository;
 import br.com.janadev.ecommerce.infra.auth.user.Perfil;
 import br.com.janadev.ecommerce.infra.error.exception.AuthorizationException;
 import br.com.janadev.ecommerce.infra.error.exception.DataIntegrityException;

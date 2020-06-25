@@ -1,6 +1,5 @@
-package br.com.janadev.ecommerce.domain.cliente;
+package br.com.janadev.ecommerce.domain.cliente.endereco;
 
-import br.com.janadev.ecommerce.domain.cliente.Estado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

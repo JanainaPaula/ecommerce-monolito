@@ -2,7 +2,7 @@ package br.com.janadev.ecommerce.domain.pedido;
 
 import br.com.janadev.ecommerce.domain.pagamento.Pagamento;
 import br.com.janadev.ecommerce.domain.cliente.Cliente;
-import br.com.janadev.ecommerce.domain.cliente.Endereco;
+import br.com.janadev.ecommerce.domain.cliente.endereco.Endereco;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;

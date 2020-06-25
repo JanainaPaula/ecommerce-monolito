@@ -1,4 +1,4 @@
-package br.com.janadev.ecommerce.domain.produto;
+package br.com.janadev.ecommerce.domain.produto.categoria;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

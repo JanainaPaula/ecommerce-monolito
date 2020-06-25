@@ -1,28 +1,29 @@
-package br.com.janadev.ecommerce.domain.cliente;
+package br.com.janadev.ecommerce.domain.produto.categoria;
+
+import br.com.janadev.ecommerce.domain.produto.Produto;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Cidade implements Serializable {
+public class Categoria implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "estado_id")
-    private Estado estado;
+    @ManyToMany(mappedBy = "categorias", fetch = FetchType.EAGER)
+    private List<Produto> produtos = new ArrayList<>();
 
-    public Cidade() {
-    }
+    public Categoria() {}
 
-    public Cidade(Integer id, String nome, Estado estado) {
+    public Categoria(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.estado = estado;
     }
 
     public Integer getId() {
@@ -41,20 +42,20 @@ public class Cidade implements Serializable {
         this.nome = nome;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cidade cidade = (Cidade) o;
-        return Objects.equals(id, cidade.id);
+        Categoria categoria = (Categoria) o;
+        return Objects.equals(id, categoria.id);
     }
 
     @Override

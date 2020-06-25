@@ -1,7 +1,5 @@
-package br.com.janadev.ecommerce.domain.cliente;
+package br.com.janadev.ecommerce.domain.cliente.endereco;
 
-import br.com.janadev.ecommerce.domain.cliente.Estado;
-import br.com.janadev.ecommerce.domain.cliente.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

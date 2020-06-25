@@ -1,4 +1,4 @@
-package br.com.janadev.ecommerce.domain.produto;
+package br.com.janadev.ecommerce.domain.produto.categoria;
 
 import br.com.janadev.ecommerce.infra.error.exception.DataIntegrityException;
 import br.com.janadev.ecommerce.infra.error.exception.ObjectNotFoundException;

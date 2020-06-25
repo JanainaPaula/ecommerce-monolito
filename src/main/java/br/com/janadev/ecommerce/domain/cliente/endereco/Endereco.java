@@ -1,5 +1,6 @@
-package br.com.janadev.ecommerce.domain.cliente;
+package br.com.janadev.ecommerce.domain.cliente.endereco;
 
+import br.com.janadev.ecommerce.domain.cliente.Cliente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;

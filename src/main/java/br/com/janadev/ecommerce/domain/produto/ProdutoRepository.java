@@ -1,7 +1,6 @@
 package br.com.janadev.ecommerce.domain.produto;
 
-import br.com.janadev.ecommerce.domain.produto.Categoria;
-import br.com.janadev.ecommerce.domain.produto.Produto;
+import br.com.janadev.ecommerce.domain.produto.categoria.Categoria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

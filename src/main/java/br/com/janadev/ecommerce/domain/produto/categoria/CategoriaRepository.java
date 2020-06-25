@@ -1,6 +1,5 @@
-package br.com.janadev.ecommerce.domain.produto;
+package br.com.janadev.ecommerce.domain.produto.categoria;
 
-import br.com.janadev.ecommerce.domain.produto.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

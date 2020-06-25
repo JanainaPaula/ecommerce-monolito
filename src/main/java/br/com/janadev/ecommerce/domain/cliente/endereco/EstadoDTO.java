@@ -1,20 +1,18 @@
-package br.com.janadev.ecommerce.domain.cliente;
-
-import br.com.janadev.ecommerce.domain.cliente.Cidade;
+package br.com.janadev.ecommerce.domain.cliente.endereco;
 
 import java.io.Serializable;
 
-public class CidadeDTO implements Serializable {
+public class EstadoDTO implements Serializable {
 
     private Integer id;
     private String nome;
 
-    public CidadeDTO() {
+    public EstadoDTO() {
     }
 
-    public CidadeDTO(Cidade cidade) {
-        this.id = cidade.getId();
-        this.nome = cidade.getNome();
+    public EstadoDTO(Estado estado) {
+        this.id = estado.getId();
+        this.nome = estado.getNome();
     }
 
     public Integer getId() {

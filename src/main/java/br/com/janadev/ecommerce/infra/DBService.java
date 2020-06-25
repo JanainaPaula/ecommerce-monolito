@@ -1,13 +1,14 @@
 package br.com.janadev.ecommerce.infra;
 
 import br.com.janadev.ecommerce.domain.cliente.*;
+import br.com.janadev.ecommerce.domain.cliente.endereco.*;
 import br.com.janadev.ecommerce.domain.pagamento.*;
 import br.com.janadev.ecommerce.domain.pedido.ItemPedido;
 import br.com.janadev.ecommerce.domain.pedido.ItemPedidoRepository;
 import br.com.janadev.ecommerce.domain.pedido.Pedido;
 import br.com.janadev.ecommerce.domain.pedido.PedidoRepository;
-import br.com.janadev.ecommerce.domain.produto.Categoria;
-import br.com.janadev.ecommerce.domain.produto.CategoriaRepository;
+import br.com.janadev.ecommerce.domain.produto.categoria.Categoria;
+import br.com.janadev.ecommerce.domain.produto.categoria.CategoriaRepository;
 import br.com.janadev.ecommerce.domain.produto.Produto;
 import br.com.janadev.ecommerce.domain.produto.ProdutoRepository;
 import br.com.janadev.ecommerce.infra.auth.user.Perfil;

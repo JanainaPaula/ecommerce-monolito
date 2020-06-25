@@ -1,5 +1,6 @@
 package br.com.janadev.ecommerce.domain.cliente;
 
+import br.com.janadev.ecommerce.domain.cliente.endereco.Endereco;
 import br.com.janadev.ecommerce.domain.pedido.Pedido;
 import br.com.janadev.ecommerce.infra.auth.user.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
