@@ -1,8 +1,8 @@
 package br.com.janadev.ecommerce.config;
 
-import br.com.janadev.ecommerce.services.DBService;
-import br.com.janadev.ecommerce.services.EmailService;
-import br.com.janadev.ecommerce.services.MockEmailService;
+import br.com.janadev.ecommerce.infra.DBService;
+import br.com.janadev.ecommerce.infra.email.EmailService;
+import br.com.janadev.ecommerce.infra.email.MockEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

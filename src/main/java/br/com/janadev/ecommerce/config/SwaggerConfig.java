@@ -4,6 +4,7 @@ import io.swagger.models.auth.In;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
@@ -39,7 +40,7 @@ public class SwaggerConfig {
                 .globalResponseMessage(RequestMethod.PUT, Arrays.asList(msg204put, msg403, msg404, msg422, msg500))
                 .globalResponseMessage(RequestMethod.DELETE, Arrays.asList(msg204del, msg403, msg404, msg500))
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.janadev.ecommerce.resource"))
+                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())

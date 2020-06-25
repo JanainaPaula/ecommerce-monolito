@@ -1,7 +1,7 @@
 package br.com.janadev.ecommerce.config;
 
-import br.com.janadev.ecommerce.domain.PagamentoComBoleto;
-import br.com.janadev.ecommerce.domain.PagamentoComCartao;
+import br.com.janadev.ecommerce.domain.pagamento.PagamentoComBoleto;
+import br.com.janadev.ecommerce.domain.pagamento.PagamentoComCartao;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
