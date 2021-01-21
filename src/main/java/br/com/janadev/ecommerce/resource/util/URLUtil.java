@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 public class URLUtil {
 
-    public static String decodeParam(String string){
-        return URLDecoder.decode(string, StandardCharsets.UTF_8);
+    public static String decodeParam(String string) throws UnsupportedEncodingException {
+        return URLDecoder.decode(string, String.valueOf(StandardCharsets.UTF_8));
     }
 
     public static List<Integer> decodeIntList(String listInString){
