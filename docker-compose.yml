@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  mysql-monolito:
+    container_name: mysql-ecommerce
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=curso_spring
+      - MYSQL_USER=eco
+      - MYSQL_PASSWORD=456
+    ports:
+      - 3306:3306
+#    volumes:
+#      - /Users/janainapereiradepaula/volumes/mysql:/var/lib/mysql

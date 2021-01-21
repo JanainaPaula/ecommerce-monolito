@@ -1,8 +1,8 @@
 package br.com.janadev.ecommerce.config;
 
-import br.com.janadev.ecommerce.services.DBService;
-import br.com.janadev.ecommerce.services.EmailService;
-import br.com.janadev.ecommerce.services.SmtpEmailService;
+import br.com.janadev.ecommerce.infra.DBService;
+import br.com.janadev.ecommerce.infra.email.EmailService;
+import br.com.janadev.ecommerce.infra.email.SmtpEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

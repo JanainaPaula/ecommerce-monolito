@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/curso_spring
     username: root
-    password:
+    password: 123
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
@@ -14,12 +14,13 @@ spring:
         format-sql: true
     open-in-view: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL57Dialect
 
   mail:
     host: smtp.gmail.com
     username: teste.trabalho093@gmail.com
-    password:
+    password: amoandroid
     properties:
       mail:
         smtp:

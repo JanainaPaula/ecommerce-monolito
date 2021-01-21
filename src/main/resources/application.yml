@@ -1,7 +1,29 @@
 spring:
   profiles:
     active: test
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 default:
   sender: janainadepaula93@gmail.com
   recipient: janainadepaula93@gmail.com
+
+jwt:
+  secret: SequenciaDeCaracteresParaAssinarToken
+  expiration: 86400000
+
+aws:
+  access_key_id:
+  secret_access_key:
+s3:
+  bucket: ecommerce-monolito
+  region: sa-east-1
+
+img:
+  prefix:
+    client:
+      profile: cp
+  profile:
+    size: 200
